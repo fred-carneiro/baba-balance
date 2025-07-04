@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Baba Balance
 
-## Getting Started
+App para equilibrar times de futebol recreativo. Feito com Next.js, React, Shadcn UI e Zustand.
 
-First, run the development server:
+## Funcionalidades
+
+- **Cadastro de Jogadores**: Adicione jogadores com nome, posição (ataque, meio, defesa) e nota (muito bom, bom, médio, ruim, perna de pau)
+- **Seleção de Participantes**: Escolha quais jogadores vão participar do jogo
+- **Geração de Times Equilibrados**: Algoritmo inteligente que divide os participantes em times balanceados por posição e nota
+- **Edição Inline**: Edite posições e notas diretamente nas listas
+- **Persistência Local**: Dados salvos automaticamente no navegador
+
+## Tecnologias
+
+- **Next.js 15** - Framework React com App Router
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Estilização
+- **Shadcn UI** - Componentes de interface
+- **Zustand** - Gerenciamento de estado
+- **Zod** - Validação de dados
+
+## Como usar
+
+1. **Cadastro**: Acesse `/cadastro` para adicionar jogadores
+2. **Jogo**: Vá para `/jogo` para selecionar participantes e gerar times
+3. **Edição**: Clique nos selects para alterar posições e notas
+
+## Desenvolvimento
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000) para ver o app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura do Projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/                    # Páginas (App Router)
+│   ├── cadastro/          # Cadastro de jogadores
+│   ├── jogo/              # Seleção e geração de times
+│   └── page.tsx           # Home
+├── components/            # Componentes React
+│   ├── jogador-form/      # Formulário de cadastro
+│   ├── jogador-list/      # Listagem de jogadores
+│   ├── participante-selector/ # Seleção de participantes
+│   ├── times-sugeridos/   # Exibição dos times
+│   └── ui/                # Componentes Shadcn UI
+└── lib/                   # Utilitários e store
+    ├── store/             # Zustand store
+    ├── types/             # Tipos TypeScript
+    └── utils/             # Funções utilitárias
+```
