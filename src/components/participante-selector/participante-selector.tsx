@@ -1,5 +1,4 @@
 "use client";
-import Link from 'next/link';
 import { useJogadoresStore } from '@/lib/store/jogadores';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -7,13 +6,6 @@ import { Posicao, Nota } from '@/lib/types/jogador';
 
 const posicoes: Posicao[] = ['ataque', 'meio', 'defesa'];
 const notas: Nota[] = ['muito bom', 'bom', 'medio', 'ruim', 'perna de pau'];
-const notaPeso: Record<Nota, number> = {
-  'muito bom': 5,
-  'bom': 4,
-  'medio': 3,
-  'ruim': 2,
-  'perna de pau': 1,
-};
 
 export function ParticipanteSelector() {
   const jogadores = useJogadoresStore(s => s.jogadores);

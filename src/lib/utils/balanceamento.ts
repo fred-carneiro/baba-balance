@@ -35,7 +35,6 @@ export function sugerirTimes(jogadores: Jogador[]): TimeSugerido {
   if (jogadores.length < 2) return { time1: [], time2: [] };
   const total = jogadores.length;
   const tamanhoTime1 = Math.floor(total / 2);
-  const tamanhoTime2 = total - tamanhoTime1;
   let melhorDivisao: TimeSugerido = { time1: [], time2: [] };
   let menorDiferenca = Infinity;
 
