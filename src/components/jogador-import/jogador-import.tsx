@@ -26,7 +26,7 @@ export function JogadorImport() {
       // Extrai o nome da linha (remove número, M, ✅, goleiro, etc.)
       const nome = linhaLimpa
         .replace(/^\d+\.\s*/, '') // Remove número no início
-        .replace(/\s*M\s*$/, '') // Remove M no final
+        .replace(/\s+M\s*/, ' ') // Remove M (com ou sem espaços)
         .replace(/\s*✅\s*$/, '') // Remove ✅ no final
         .replace(/\s*\(goleiro\)\s*$/i, '') // Remove (goleiro) no final
         .trim();
