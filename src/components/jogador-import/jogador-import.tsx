@@ -86,9 +86,17 @@ export function JogadorImport() {
           Processar Lista
         </Button>
         {mostrarPreview && (
-          <Button onClick={importarJogadores} variant="default">
-            Importar {jogadoresImportados.length} Jogador{jogadoresImportados.length !== 1 ? 'es' : ''}
-          </Button>
+          <>
+            <Button onClick={importarJogadores} variant="default">
+              Importar {jogadoresImportados.length} Jogador{jogadoresImportados.length !== 1 ? 'es' : ''}
+            </Button>
+            <Button onClick={() => {
+              setJogadoresImportados([]);
+              setMostrarPreview(false);
+            }} variant="outline">
+              Limpar
+            </Button>
+          </>
         )}
       </div>
 
