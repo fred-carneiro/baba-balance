@@ -20,8 +20,8 @@ export function JogadorImport() {
       // Remove espaços em branco e caracteres especiais
       const linhaLimpa = linha.trim();
       
-      // Ignora linhas vazias
-      if (!linhaLimpa) return;
+      // Ignora linhas vazias ou que contêm apenas espaços/caracteres invisíveis
+      if (!linhaLimpa || linhaLimpa.length === 0 || /^\s*$/.test(linhaLimpa)) return;
       
       // Extrai o nome da linha (remove número, M, ✅, goleiro, etc.)
       const nome = linhaLimpa
@@ -31,8 +31,8 @@ export function JogadorImport() {
         .replace(/\s*\(goleiro\)\s*$/i, '') // Remove (goleiro) no final
         .trim();
 
-      // Ignora se não tem nome ou se contém "goleiro"
-      if (!nome || linhaLimpa.toLowerCase().includes('goleiro')) return;
+      // Ignora se não tem nome, se contém "goleiro", ou se o nome ficou vazio após processamento
+      if (!nome || nome.length === 0 || /^\s*$/.test(nome) || linhaLimpa.toLowerCase().includes('goleiro')) return;
 
       // Cria o jogador com posição padrão "meio" e nota "medio"
       const jogador: Jogador = {
