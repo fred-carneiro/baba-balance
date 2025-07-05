@@ -3,6 +3,8 @@ import { useJogadoresStore } from '@/lib/store/jogadores';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Posicao, Nota } from '@/lib/types/jogador';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
+import { useState } from 'react';
 
 const posicoes: Posicao[] = ['defesa', 'meio', 'ataque'];
 const notas: Nota[] = ['muito bom', 'bom', 'medio', 'ruim', 'perna de pau'];
@@ -18,6 +20,8 @@ export function JogadorList() {
   const jogadores = useJogadoresStore(s => s.jogadores);
   const updateJogador = useJogadoresStore(s => s.updateJogador);
   const removeJogador = useJogadoresStore(s => s.removeJogador);
+  const removeAllJogadores = useJogadoresStore(s => s.removeAllJogadores);
+  const [open, setOpen] = useState(false);
 
   if (jogadores.length === 0) return <div>Nenhum jogador cadastrado.</div>;
 
@@ -29,6 +33,30 @@ export function JogadorList() {
 
   return (
     <div className="overflow-x-auto">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-semibold">Jogadores cadastrados</span>
+          <DialogTrigger asChild>
+            <Button variant="destructive" size="sm" onClick={() => setOpen(true)} disabled={jogadores.length === 0}>
+              Remover todos
+            </Button>
+          </DialogTrigger>
+        </div>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Remover todos os jogadores?</DialogTitle>
+          </DialogHeader>
+          <div className="py-2">Essa ação não pode ser desfeita. Tem certeza que deseja remover todos os jogadores cadastrados?</div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setOpen(false)}>
+              Cancelar
+            </Button>
+            <Button variant="destructive" onClick={() => { removeAllJogadores(); setOpen(false); }}>
+              Remover todos
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       <table className="min-w-full border rounded text-sm">
         <thead>
           <tr className="bg-muted">

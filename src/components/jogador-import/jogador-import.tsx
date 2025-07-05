@@ -17,8 +17,8 @@ export function JogadorImport() {
     const jogadores: Jogador[] = [];
 
     linhas.forEach((linha) => {
-      // Remove espaços em branco e caracteres especiais
-      const linhaLimpa = linha.trim();
+      // Remove espaços em branco e caracteres invisíveis Unicode
+      const linhaLimpa = linha.replace(/[\u200B-\u200D\u2060\uFEFF]/g, '').trim();
       
       // Ignora linhas vazias ou que contêm apenas espaços/caracteres invisíveis
       if (!linhaLimpa || linhaLimpa.length === 0 || /^\s*$/.test(linhaLimpa)) return;
@@ -29,6 +29,7 @@ export function JogadorImport() {
         .replace(/\s+M\s*/, ' ') // Remove M (com ou sem espaços)
         .replace(/\s*✅\s*$/, '') // Remove ✅ no final
         .replace(/\s*\(goleiro\)\s*$/i, '') // Remove (goleiro) no final
+        .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '') // Remove invisíveis remanescentes
         .trim();
 
       // Ignora se não tem nome, se contém "goleiro", ou se o nome ficou vazio após processamento
